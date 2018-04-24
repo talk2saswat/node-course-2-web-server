@@ -1,7 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
-const port = process.env.PORT || 3000; //for heroku the first one will take and the next one for local
+const port = process.env.PORT || 4000; //for heroku the first one will take and the next one for local
 var app = express();
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
@@ -40,6 +40,11 @@ app.get('/', (req, res) => {
     welcomeMessage: 'Welcome to my website'
   });
 });
+app.get('/projects', (req, res) => {
+  res.render('projects.hbs', {
+    pageTitle: 'Projects Page'
+  });
+});
 app.get('/about', (req, res) => {
   //res.send('About Page.');
   res.render('about.hbs', {
@@ -53,5 +58,5 @@ app.get('/bad', (req, res) => {
 });
 // app.listen(3000);//We can use this also
 app.listen(`${port}`, () => {
-  console.log('Server is up in port 3000');
+  console.log(`Server is up in port 3000 ${port}`);
 });
